@@ -91,14 +91,12 @@ function App() {
   }
 
   function handleUpdateUser(userUpdate) {
-    console.log('update');
     console.log(userUpdate);
     api
       .setUserInfo(userUpdate)
       .then((newUserData) => {
         setCurrentUser(newUserData);
         closeAllPopups();
-        console.log(newUserData);
       })
       .catch((err) => console.log(err));
   }
