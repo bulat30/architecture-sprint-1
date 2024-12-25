@@ -16,7 +16,7 @@ const login = (req: Request, res: Response, next: NextFunction) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET);
-
+      
       res
         .cookie('jwt', token, {
 
@@ -24,6 +24,7 @@ const login = (req: Request, res: Response, next: NextFunction) => {
           httpOnly: true,
           sameSite: true,
         })
+        .setHeader('jwt', token)
         .send({ data: user.toJSON() });
     })
     .catch(next);

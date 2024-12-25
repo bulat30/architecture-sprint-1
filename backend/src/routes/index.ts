@@ -13,12 +13,23 @@ import cardRouter from './cards';
 import userRouter from './users';
 
 const router = Router();
+
+var cors = require('cors');
+let corsOptions = {
+  origin : ['http://localhost:3000'],
+  credentials: true,
+  exposedHeaders: ['jwt']
+};
+router.use(cors(corsOptions));
+
 router.post('/signup', validateUserBody, createUser);
 router.post('/signin', validateAuthentication, login);
+router.get('/health', (_req, res) => {
+  res.status(200).send('Ok');
+});
 
-router.use(auth);
-router.use('/users', userRouter);
-router.use('/cards', cardRouter);
+router.use('/users', auth, userRouter);
+router.use('/cards', auth, cardRouter);
 
 router.use((req: Request, res: Response, next: NextFunction) => {
   next(new NotFoundError('Маршрут не найден'));
