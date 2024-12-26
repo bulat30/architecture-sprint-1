@@ -9,7 +9,7 @@ function Login (){
 
   function onLogin({email, password})
   {
-    dispatchEvent(new CustomEvent("onLogin"), {
+    dispatchEvent(new CustomEvent("onLoginUser"), {
       detail: login(email, password)
     });
   }
