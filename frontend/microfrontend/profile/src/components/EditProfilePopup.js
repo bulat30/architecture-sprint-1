@@ -5,6 +5,7 @@ import api from '../utils/api.js';
 function EditProfilePopup() {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
+  const [popupState, changeState] = React.useState(false);
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -15,8 +16,8 @@ function EditProfilePopup() {
   }
 
   React.useEffect(() => {
-    addEventListener("onLoginUser", handleUserLogin);
-    return () => removeEventListener("onLoginUser", handleUserLogin)
+    addEventListener("onUserLogin", handleUserLogin);
+    return () => removeEventListener("onUserLogin", handleUserLogin)
   }, []);
 
   const handleUserLogin = event => {
@@ -34,15 +35,19 @@ function EditProfilePopup() {
     });
   }
 
-  function onUpdateUser({name, about}){
-    dispatchEvent(new CustomEvent("onUpdateUser"), {
+  function onUpdateUser({name, about}) {
+    dispatchEvent(new CustomEvent("onUserUpdate"), {
       detail: api.setUserInfo({name, about})
     });
   }
 
+  function onClose() {
+    changeState(false);
+  }
+
   return (
     <PopupWithForm
-      isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} title="Редактировать профиль" name="edit"
+      isOpen={popupState} onSubmit={handleSubmit} onClose={onClose} title="Редактировать профиль" name="edit"
     >
       <label className="popup__label">
         <input type="text" name="userName" id="owner-name"

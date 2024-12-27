@@ -9,12 +9,12 @@ function Login (){
 
   function onLogin({email, password})
   {
-    dispatchEvent(new CustomEvent("onLoginUser"), {
+    dispatchEvent(new CustomEvent("onUserLogin"), {
       detail: login(email, password)
     });
   }
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     const userData = {
       email,

@@ -5,6 +5,7 @@ import api from '../utils/api.js';
 function AddPlacePopup() {
   const [name, setName] = React.useState('');
   const [link, setLink] = React.useState('');
+  const [popupState, changeState] = React.useState(false);
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -25,14 +26,18 @@ function AddPlacePopup() {
 
   function onAddPlace({name, link})
   {
-    dispatchEvent(new CustomEvent("onAddCard"), {
+    dispatchEvent(new CustomEvent("onCardAdd"), {
       detail: api.addCard({name, link})
     });
   }
 
+  function onClose() {
+    changeState(false);
+  }
+
   return (
     <PopupWithForm
-      isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} title="Новое место" name="new-card"
+      isOpen={popupState} onSubmit={handleSubmit} onClose={onClose} title="Новое место" name="new-card"
     >
       <label className="popup__label">
         <input type="text" name="name" id="place-name"

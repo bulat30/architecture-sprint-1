@@ -4,6 +4,7 @@ import api from '../utils/api.js';
 
 function EditAvatarPopup() {
   const inputRef = React.useRef();
+  const [popupState, changeState] = React.useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,14 +15,18 @@ function EditAvatarPopup() {
   }
 
   function onUpdateAvatar({avatar}) {
-    dispatchEvent(new CustomEvent("onUpdateAvatar"), {
+    dispatchEvent(new CustomEvent("onAvatarUpdate"), {
       detail: api.setUserAvatar({avatar})
     });
   }
 
+  function onClose() {
+    changeState(false);
+  }
+
   return (
     <PopupWithForm
-      isOpen={isOpen} onSubmit={handleSubmit} onClose={onClose} title="Обновить аватар" name="edit-avatar"
+      isOpen={popupState} onSubmit={handleSubmit} onClose={onClose} title="Обновить аватар" name="edit-avatar"
     >
 
       <label className="popup__label">

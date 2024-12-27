@@ -9,11 +9,11 @@ function Card({card, currentUser}) {
   }
 
   function handleLikeClick() {
-    onCardLike(card);
+    onChangeLikeCardStatus(card);
   }
 
   function handleDeleteClick() {
-    onCardDelete(card);
+    onDeleteCard(card);
   }
 
   function onCardClick(card) {
@@ -22,14 +22,14 @@ function Card({card, currentUser}) {
     });
   }
 
-  function onCardLike(card) {
+  function onChangeLikeCardStatus(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    dispatchEvent(new CustomEvent("onLikeCard"), {
+    dispatchEvent(new CustomEvent("onChangeLikeCardStatus"), {
       detail: api.changeLikeCardStatus(card._id, !isLiked)
     });
   }
 
-  function onCardDelete(card){
+  function onDeleteCard(card){
     dispatchEvent(new CustomEvent("onDeleteCard"), {
       detail: api.removeCard(card._id)
     });
