@@ -15,17 +15,6 @@ function EditProfilePopup() {
     setDescription(e.target.value);
   }
 
-  React.useEffect(() => {
-    addEventListener("onUserLogin", handleUserLogin);
-    return () => removeEventListener("onUserLogin", handleUserLogin)
-  }, []);
-
-  const handleUserLogin = event => {
-    const currentUser = event.detail;
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     
