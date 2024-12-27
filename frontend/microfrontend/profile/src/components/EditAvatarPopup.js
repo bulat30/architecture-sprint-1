@@ -15,7 +15,7 @@ function EditAvatarPopup() {
   }
 
   function onUpdateAvatar({avatar}) {
-    dispatchEvent(new CustomEvent("onAvatarUpdate"), {
+    dispatchEvent(new CustomEvent("onAvatarUpdated"), {
       detail: api.setUserAvatar({avatar})
     });
   }

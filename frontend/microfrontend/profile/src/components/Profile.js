@@ -17,21 +17,15 @@ function Profile() {
       }
 
     function onEditAvatar() {
-        dispatchEvent(new CustomEvent("onAvatarEdit"), {
-            detail: avatar
-        });
+        dispatchEvent(new CustomEvent("onAvatarEdit"));
     }
 
     function onEditProfile() {
-        dispatchEvent(new CustomEvent("onProfileEdit"), {
-            detail: avatar
-        });
+        dispatchEvent(new CustomEvent("onProfileEdit"));
     }
 
     function onAddPlace() {
-        dispatchEvent(new CustomEvent("onPlaceAdd"), {
-            detail: avatar
-        });
+        dispatchEvent(new CustomEvent("onPlaceAdd"));
     }
 
     return (

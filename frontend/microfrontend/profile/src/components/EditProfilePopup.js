@@ -25,7 +25,7 @@ function EditProfilePopup() {
   }
 
   function onUpdateUser({name, about}) {
-    dispatchEvent(new CustomEvent("onUserUpdate"), {
+    dispatchEvent(new CustomEvent("onUserUpdated"), {
       detail: api.setUserInfo({name, about})
     });
   }
