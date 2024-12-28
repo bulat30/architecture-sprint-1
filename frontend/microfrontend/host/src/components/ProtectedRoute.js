@@ -1,11 +1,32 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
+import Main from './Main.js'
 
-const ProtectedRoute = ({ component: Component, ...props  }) => {
+const ProtectedRoute = () => {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    addEventListener("onUserLogin", handleUserLogin);
+    return () => removeEventListener("onUserLogin", handleUserLogin)
+  }, []);
+
+  React.useEffect(() => {
+    addEventListener("onUserSignOut", handleUserSignOut);
+    return () => removeEventListener("onUserSignOut", handleUserSignOut)
+  }, []);
+
+  const handleUserLogin = () => {
+    setIsLoggedIn(true)
+  };
+
+  const handleUserSignOut = () => {
+    setIsLoggedIn(false)
+  };
+
   return (
     <Route exact>
       {
-        () => props.loggedIn ? <Component {...props} /> : <Redirect to="./signin" />
+        () => isLoggedIn ? <Main></Main> : <Redirect to="./signin" />
       }
     </Route>
 )}

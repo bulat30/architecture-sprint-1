@@ -17,7 +17,7 @@ function Card({card, currentUser}) {
   }
 
   function onCardClick(card) {
-    dispatchEvent(new CustomEvent("onClickCard"), {
+    dispatchEvent(new CustomEvent("onCardClick"), {
       detail: card
     });
   }

@@ -6,15 +6,16 @@ function Header () {
   const [email, setEmail] = React.useState('');
 
   function handleSignOut() {
+    setEmail('');
     dispatchEvent(new CustomEvent("onUserSignOut"));
   }
 
   React.useEffect(() => {
-    addEventListener("onUserLogn", handleUserLogn);
-    return () => removeEventListener("onUserLogn", handleUserLogn)
+    addEventListener("onUserLogin", handleUserLogin);
+    return () => removeEventListener("onUserLogin", handleUserLogin)
   }, []);
 
-  const handleUserLogn = (event) => {
+  const handleUserLogin = (event) => {
     setEmail(event.detail.email)
   };
 

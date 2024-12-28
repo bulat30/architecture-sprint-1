@@ -1,6 +1,21 @@
 import React from 'react';
 
-function ImagePopup({ card, onClose }) {
+function ImagePopup() {
+  const [card, setCard] = React.useState(null);
+
+  React.useEffect(() => {
+    addEventListener("onCardClick", handleCardClick);
+    return () => removeEventListener("onCardClick", handleCardClick)
+  }, []);
+  
+  const handleCardClick = (event) => {
+    setCard(event.card);
+  };
+
+  function onClose(){
+    setCard(null);
+  }
+
   return (
     <div className={`popup popup_type_image ${card ? 'popup_is-opened' : ''}`}>
       <div className="popup__content popup__content_content_image">
