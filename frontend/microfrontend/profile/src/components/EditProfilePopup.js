@@ -7,6 +7,15 @@ function EditProfilePopup() {
   const [description, setDescription] = React.useState('');
   const [popupState, changeState] = React.useState(false);
 
+  React.useEffect(() => {
+    addEventListener("onUserUpdate", handleUserUpdate);
+    return () => removeEventListener("onUserUpdate", handleUserUpdate)
+  }, []);
+  
+  const handleUserUpdate = () => {
+    changeState(true);
+  }
+
   function handleNameChange(e) {
     setName(e.target.value);
   }

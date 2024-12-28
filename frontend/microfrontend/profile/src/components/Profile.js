@@ -1,5 +1,4 @@
 function Profile() {
-
     const [name, setName] = React.useState('');
     const [about, setAbout] = React.useState('');
     const [avatar, setAvatar] = React.useState({ backgroundImage: '' });
@@ -7,14 +6,14 @@ function Profile() {
     React.useEffect(() => {
         addEventListener("onUserLogin", handleUserLogin);
         return () => removeEventListener("onUserLogin", handleUserLogin)
-      }, []);
+    }, []);
     
-      const handleUserLogin = event => {
+    const handleUserLogin = event => {
         const currentUser = event.detail;
         setName(currentUser.name);
         setAbout(currentUser.about);
         setAvatar({ backgroundImage: `url(${currentUser.avatar})` });
-      }
+    }
 
     function onEditAvatar() {
         dispatchEvent(new CustomEvent("onAvatarEdit"));

@@ -6,10 +6,10 @@ function Places() {
     const [cards, setCards] = React.useState([]);
     const [currentUser, setCurrentUser] = React.useState([]);
 
-      React.useEffect(() => {
+    React.useEffect(() => {
         addEventListener("onUserLogin", handleUserLogin);
         return () => removeEventListener("onUserLogin", handleUserLogin)
-      }, []);
+    }, []);
     
     const handleUserLogin = event => {
         const currentUser = event.detail;

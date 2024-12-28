@@ -6,6 +6,15 @@ function EditAvatarPopup() {
   const inputRef = React.useRef();
   const [popupState, changeState] = React.useState(false);
 
+  React.useEffect(() => {
+    addEventListener("onAvatarUpdate", handleAvatarUpdate);
+    return () => removeEventListener("onAvatarUpdate", handleAvatarUpdate)
+  }, []);
+
+  const handleAvatarUpdate = () => {
+    changeState(true);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 

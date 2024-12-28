@@ -5,10 +5,6 @@ import "./index.css";
 
 const App = () => (
   <div className="container">
-    <div>Name: card</div>
-    <div>Framework: react</div>
-    <div>Language: JavaScript</div>
-    <div>CSS: Empty CSS</div>
   </div>
 );
 const rootElement = document.getElementById("app")

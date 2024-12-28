@@ -24,13 +24,13 @@ function Card({card, currentUser}) {
 
   function onChangeLikeCardStatus(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    dispatchEvent(new CustomEvent("onChangeLikeCardStatus"), {
+    dispatchEvent(new CustomEvent("onLikeCardStatusChange"), {
       detail: api.changeLikeCardStatus(card._id, !isLiked)
     });
   }
 
   function onDeleteCard(card){
-    dispatchEvent(new CustomEvent("onDeleteCard"), {
+    dispatchEvent(new CustomEvent("onCardDelete"), {
       detail: api.removeCard(card._id)
     });
   }

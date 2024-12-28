@@ -7,6 +7,15 @@ function AddPlacePopup() {
   const [link, setLink] = React.useState('');
   const [popupState, changeState] = React.useState(false);
 
+  React.useEffect(() => {
+    addEventListener("onCardAdd", handleCardAdd);
+    return () => removeEventListener("onCardAdd", handleCardAdd)
+  }, []);
+
+  const handleCardAdd = () => {
+    changeState(true);
+  }
+
   function handleNameChange(e) {
     setName(e.target.value);
   }
@@ -26,7 +35,7 @@ function AddPlacePopup() {
 
   function onAddPlace({name, link})
   {
-    dispatchEvent(new CustomEvent("onCardAdd"), {
+    dispatchEvent(new CustomEvent("onCardAdded"), {
       detail: api.addCard({name, link})
     });
   }
