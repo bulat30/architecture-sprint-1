@@ -11,6 +11,10 @@ function InfoTooltip() {
     addEventListener("onUserRegister", handleUserRegister);
     return () => removeEventListener("onUserRegister", handleUserRegister)
   }, []);
+
+  function onClose() {
+    dispatchEvent(new CustomEvent("onClosePopups"));
+  }
   
   const handleUserRegister = (event) => {
     setState(true);

@@ -1,5 +1,5 @@
 import React, {lazy} from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import ProtectedRoute from './components/ProtectedRoute.js'
 import Header from './components/Header.js'
@@ -31,27 +31,27 @@ const EditProfilePopupControl = lazy(() => import('profile/EditProfilePopupContr
 }));
 
 const App = () => (
-
-  <div className="page__content">
-    <Header/>
-    <Switch>
-      <ProtectedRoute/>
-      <Route path="/signup">
-        <RegisterControl />
-      </Route>
-      <Route path="/signin">
-        <LoginControl />
-      </Route>
-    </Switch>
-    <Footer />
-    <EditProfilePopupControl/>
-    <AddPlacePopupControl/>
-    <PopupWithForm title="Вы уверены?" name="remove-card" buttonText="Да" />
-    <EditAvatarPopupControl/>
-    <ImagePopup />
-    <InfoTooltip/>
-  </div>
-
+  <BrowserRouter>
+    <div className="page__content">
+      <Header/>
+      <Switch>
+        <ProtectedRoute/>
+        <Route path="/signup">
+          <RegisterControl />
+        </Route>
+        <Route path="/signin">
+          <LoginControl />
+        </Route>
+      </Switch>
+      <Footer />
+      <EditProfilePopupControl/>
+      <AddPlacePopupControl/>
+      <PopupWithForm title="Вы уверены?" name="remove-card" buttonText="Да" />
+      <EditAvatarPopupControl/>
+      <ImagePopup />
+      <InfoTooltip/>
+    </div>
+  </BrowserRouter>
 );
 const rootElement = document.getElementById("app")
 if (!rootElement) throw new Error("Failed to find the root element")
