@@ -17,22 +17,28 @@ function Card({card, currentUser}) {
   }
 
   function onCardClick(card) {
-    dispatchEvent(new CustomEvent("onCardClick"), {
+    dispatchEvent(new CustomEvent("onCardClick", {
       detail: card
-    });
+    }));
   }
 
   function onChangeLikeCardStatus(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    dispatchEvent(new CustomEvent("onLikeCardStatusChange"), {
-      detail: api.changeLikeCardStatus(card._id, !isLiked)
-    });
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then(response => 
+        dispatchEvent(new CustomEvent("onLikeCardStatusChange", {
+          detail: response.data
+      })))
+      .catch(dispatchEvent(new CustomEvent("onLikeCardStatusChangeFailed")));
   }
 
   function onDeleteCard(card){
-    dispatchEvent(new CustomEvent("onCardDelete"), {
-      detail: api.removeCard(card._id)
-    });
+    api.removeCard(card._id)
+      .then(response =>
+        dispatchEvent(new CustomEvent("onCardDelete", {
+          detail: response.data
+      })))
+      .catch(dispatchEvent(new CustomEvent("onCardDeleteFailed")))
   }
 
   const isLiked = card.likes.some(i => i._id === currentUser._id);

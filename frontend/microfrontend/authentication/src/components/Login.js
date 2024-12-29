@@ -9,9 +9,13 @@ function Login() {
 
   function onLogin({email, password})
   {
-    dispatchEvent(new CustomEvent("onUserLogin"), {
-      detail: login(email, password)
-    });
+    login(email, password)
+      .then(userData => {
+        dispatchEvent(new CustomEvent("onUserLogin", {
+          detail: userData.data
+        }));
+      })
+      .catch(dispatchEvent(new CustomEvent("onUserLoginFailed")));
   }
 
   function handleSubmit(e) {

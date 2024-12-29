@@ -8,9 +8,12 @@ function Register() {
 
   function onRegister({email, password})
   {
-      dispatchEvent(new CustomEvent("onUserRegister"), {
-        detail: register(email, password)
-      });
+    register(email, password)
+      .then(response =>
+        dispatchEvent(new CustomEvent("onUserRegister", {
+          detail: response.data
+      })))
+      .catch(dispatchEvent(new CustomEvent("onUserRegisterFailed")));
   }
 
   function handleSubmit(e){

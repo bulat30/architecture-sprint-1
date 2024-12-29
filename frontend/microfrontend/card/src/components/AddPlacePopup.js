@@ -35,9 +35,12 @@ function AddPlacePopup() {
 
   function onAddPlace({name, link})
   {
-    dispatchEvent(new CustomEvent("onCardAdded"), {
-      detail: api.addCard({name, link})
-    });
+    api.addCard({name, link})
+      .then(response => 
+        dispatchEvent(new CustomEvent("onCardAdded", {
+          detail: response.data
+      })))
+      .catch(dispatchEvent(new CustomEvent("onCardAddFailed")));
   }
 
   function onClose() {

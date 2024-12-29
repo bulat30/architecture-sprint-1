@@ -24,9 +24,12 @@ function EditAvatarPopup() {
   }
 
   function onUpdateAvatar({avatar}) {
-    dispatchEvent(new CustomEvent("onAvatarUpdated"), {
-      detail: api.setUserAvatar({avatar})
-    });
+    api.setUserAvatar({avatar})
+      .then(response => 
+        dispatchEvent(new CustomEvent("onAvatarUpdated", {
+          detail: response.data
+      })))
+      .catch(dispatchEvent(new CustomEvent("onAvatarUpdateFailed")));
   }
 
   function onClose() {

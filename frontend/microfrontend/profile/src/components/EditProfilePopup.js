@@ -34,9 +34,12 @@ function EditProfilePopup() {
   }
 
   function onUpdateUser({name, about}) {
-    dispatchEvent(new CustomEvent("onUserUpdated"), {
-      detail: api.setUserInfo({name, about})
-    });
+    api.setUserInfo({name, about})
+      .then(response => 
+        dispatchEvent(new CustomEvent("onUserUpdated"), {
+          detail: response.data
+      }))
+      .catch(dispatchEvent(new CustomEvent("onUserUpdateFailed")));
   }
 
   function onClose() {

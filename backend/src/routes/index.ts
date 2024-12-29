@@ -16,7 +16,7 @@ const router = Router();
 
 var cors = require('cors');
 let corsOptions = {
-  origin : ['http://localhost:3000'],
+  origin : ['http://localhost:3000', 'http://localhost:8080'],
   credentials: true,
   exposedHeaders: ['jwt']
 };
