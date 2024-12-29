@@ -1,4 +1,5 @@
-import React from "react";
+import React, {lazy} from "react";
+import { Route, Switch } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import ProtectedRoute from './components/ProtectedRoute.js'
 import Header from './components/Header.js'
