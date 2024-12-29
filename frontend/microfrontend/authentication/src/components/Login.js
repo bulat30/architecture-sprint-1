@@ -3,7 +3,7 @@ import React from 'react';
 import '../blocks/login/login.css';
 import {login} from '../utils/auth.js';
 
-function Login (){
+function Login() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 

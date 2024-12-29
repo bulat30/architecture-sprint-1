@@ -39,3 +39,5 @@ function Profile() {
       </section>
     );
 }
+
+export default Profile;
