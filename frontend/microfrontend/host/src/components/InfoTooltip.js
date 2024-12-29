@@ -12,21 +12,26 @@ function InfoTooltip() {
     return () => removeEventListener("onUserRegister", handleUserRegister)
   }, []);
 
+  React.useEffect(() => {
+    addEventListener("onUserRegisterFailed", handleUserRegisterFailed);
+    return () => removeEventListener("onUserRegisterFailed", handleUserRegisterFailed)
+  }, []);
+
   function onClose() {
+    setState(false);
     dispatchEvent(new CustomEvent("onClosePopups"));
   }
-  
-  const handleUserRegister = (event) => {
-    setState(true);
 
-    if(event.status === 'success'){
-      setIcon(SuccessIcon);
-      setText("Вы успешно зарегистрировались");
-    }
-    else{
-      setIcon(ErrorIcon);
-      setText( "Что-то пошло не так! Попробуйте ещё раз.");
-    }
+  const handleUserRegisterFailed = () => {
+    setState(true);
+    setIcon(ErrorIcon);
+    setText( "Что-то пошло не так! Попробуйте ещё раз.");
+  }
+  
+  const handleUserRegister = () => {
+    setState(true);
+    setIcon(SuccessIcon);
+    setText("Вы успешно зарегистрировались");
   };
 
   return (

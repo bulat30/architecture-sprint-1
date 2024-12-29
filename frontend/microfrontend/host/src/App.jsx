@@ -11,8 +11,6 @@ import PopupWithForm from './components/PopupWithForm.js'
 import "./index.css";
 
 const LoginControl = lazy(() => import('authentication/LoginControl').catch(e => {
-  console.log('LoginControl doesnt load');
-  console.log(e);
   return { default: () => <div className='error'>Component is not available!</div> };
 }));
 

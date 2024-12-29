@@ -15,8 +15,8 @@ function Header () {
     return () => removeEventListener("onUserLogin", handleUserLogin)
   }, []);
 
-  const handleUserLogin = (event) => {
-    setEmail(event.detail.email)
+  const handleUserLogin = event => {
+    setEmail(event.detail.email);
   };
 
   return (

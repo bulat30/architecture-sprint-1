@@ -16,11 +16,11 @@ const ProtectedRoute = () => {
   }, []);
 
   const handleUserLogin = () => {
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
   };
 
   const handleUserSignOut = () => {
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
   };
 
   return (
