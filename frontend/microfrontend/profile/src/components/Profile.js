@@ -12,6 +12,7 @@ function Profile() {
     }, []);
     
     const handleUserLogin = event => {
+        console.log("profile.handleUserLogin");
         const currentUser = event.detail;
         setName(currentUser.name);
         setAbout(currentUser.about);

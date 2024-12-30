@@ -1,5 +1,5 @@
 import React, {lazy, Suspense } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import ProtectedRoute from './components/ProtectedRoute.js'
 import Header from './components/Header.js'
@@ -30,36 +30,59 @@ const EditProfilePopupControl = lazy(() => import('profile/EditProfilePopupContr
   return { default: () => <div className='error'>Component is not available!</div> };
 }));
 
-const App = () => (
-  <div className="page__content">
-    <BrowserRouter>
-      <Header/>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          <ProtectedRoute 
-            exact
-            path="/" />
-          <Route path="/signup">
-            <RegisterControl/>
-          </Route>
-          <Route path="/signin">
-            <LoginControl/>
-          </Route>
-        </Switch>
-      </Suspense>
-      <Footer />
-      <EditProfilePopupControl/>
-      <AddPlacePopupControl/>
-      <PopupWithForm title="Вы уверены?" name="remove-card" buttonText="Да" />
-      <EditAvatarPopupControl/>
-      <ImagePopup />
-      <InfoTooltip/>
-    </BrowserRouter>
-  </div>
-);
+const App = () => { 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const history = useHistory();
+
+  React.useEffect(() => {
+    addEventListener("onUserLogin", handleUserLogin);
+    return () => removeEventListener("onUserLogin", handleUserLogin)
+  }, []);
+
+  React.useEffect(() => {
+    addEventListener("onUserSignOut", handleUserSignOut);
+    return () => removeEventListener("onUserSignOut", handleUserSignOut)
+  }, []);
+
+  const handleUserLogin = () => {
+    history.push("/");
+    setIsLoggedIn(true);
+  };
+
+  const handleUserSignOut = () => {
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <div className="page__content">
+      
+        <Header/>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <ProtectedRoute 
+              exact
+              path="/"
+              isLoggedIn={isLoggedIn} />
+            <Route path="/signup">
+              <RegisterControl/>
+            </Route>
+            <Route path="/signin">
+              <LoginControl/>
+            </Route>
+          </Switch>
+        </Suspense>
+        <Footer />
+        <EditProfilePopupControl/>
+        <AddPlacePopupControl/>
+        <PopupWithForm title="Вы уверены?" name="remove-card" buttonText="Да" />
+        <EditAvatarPopupControl/>
+        <ImagePopup />
+        <InfoTooltip/>
+    </div>
+  )};
 const rootElement = document.getElementById("app")
 if (!rootElement) throw new Error("Failed to find the root element")
 
 const root = ReactDOM.createRoot(rootElement)
 
-root.render(<App />)
+root.render(<BrowserRouter><App /></BrowserRouter>)
