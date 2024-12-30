@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../utils/api.js';
 import Card from './Card';
+import '../index.css';
 
 function Places() {
     const [cards, setCards] = React.useState([]);

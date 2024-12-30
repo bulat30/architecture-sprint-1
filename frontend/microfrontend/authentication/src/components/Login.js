@@ -1,9 +1,6 @@
 import React from 'react';
-
 import '../blocks/login/login.css';
-import '../blocks/auth-form/auth-form.css';
-import '../vendor/normalize.css';
-import '../vendor/fonts.css';
+import '../index.css';
 
 import {login} from '../utils/auth.js';
 

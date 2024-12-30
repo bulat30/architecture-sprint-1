@@ -1,3 +1,6 @@
+import '../index.css';
+import React from 'react';
+
 function Profile() {
     const [name, setName] = React.useState('');
     const [about, setAbout] = React.useState('');

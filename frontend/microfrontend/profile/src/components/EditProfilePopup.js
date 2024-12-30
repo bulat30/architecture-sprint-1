@@ -1,6 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import api from '../utils/api.js';
+import '../index.css';
 
 function EditProfilePopup() {
   const [name, setName] = React.useState('');

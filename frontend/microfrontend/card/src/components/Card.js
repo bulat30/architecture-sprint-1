@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../utils/api.js';
+import '../index.css';
 
 function Card({card, currentUser}) {
   const cardStyle = { backgroundImage: `url(${card.link})` };
