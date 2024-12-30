@@ -14,7 +14,10 @@ function Register() {
         dispatchEvent(new CustomEvent("onUserRegister", {
           detail: response.data
       })))
-      .catch(dispatchEvent(new CustomEvent("onUserRegisterFailed")));
+      .catch((error) =>{
+        console.log(error);
+        dispatchEvent(new CustomEvent("onUserRegisterFailed"));
+      });
   }
 
   function handleSubmit(e){

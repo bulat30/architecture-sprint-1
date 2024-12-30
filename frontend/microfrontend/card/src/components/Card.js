@@ -30,7 +30,11 @@ function Card({card, currentUser}) {
         dispatchEvent(new CustomEvent("onLikeCardStatusChange", {
           detail: response.data
       })))
-      .catch(dispatchEvent(new CustomEvent("onLikeCardStatusChangeFailed")));
+      .catch((error) => {
+        console.log(error);
+        dispatchEvent(new CustomEvent("onLikeCardStatusChangeFailed"));
+      }
+    );
   }
 
   function onDeleteCard(card){

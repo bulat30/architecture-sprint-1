@@ -16,7 +16,10 @@ function Login() {
           detail: userData.data
         }));
       })
-      .catch(dispatchEvent(new CustomEvent("onUserLoginFailed")));
+      .catch((error) => {
+        console.log(error);
+        dispatchEvent(new CustomEvent("onUserLoginFailed"));
+      });
   }
 
   function handleSubmit(e) {

@@ -30,7 +30,10 @@ function EditAvatarPopup() {
         dispatchEvent(new CustomEvent("onAvatarUpdated", {
           detail: response.data
       })))
-      .catch(dispatchEvent(new CustomEvent("onAvatarUpdateFailed")));
+      .catch((error) => {
+        console.log(error);
+        dispatchEvent(new CustomEvent("onAvatarUpdateFailed"));
+      });
   }
 
   function onClose() {

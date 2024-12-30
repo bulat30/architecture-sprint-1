@@ -40,7 +40,10 @@ function EditProfilePopup() {
         dispatchEvent(new CustomEvent("onUserUpdated"), {
           detail: response.data
       }))
-      .catch(dispatchEvent(new CustomEvent("onUserUpdateFailed")));
+      .catch((error) => {
+        console.log(error);
+        dispatchEvent(new CustomEvent("onUserUpdateFailed"));
+      });
   }
 
   function onClose() {

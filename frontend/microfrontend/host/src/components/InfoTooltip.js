@@ -17,6 +17,11 @@ function InfoTooltip() {
     return () => removeEventListener("onUserRegisterFailed", handleUserRegisterFailed)
   }, []);
 
+  React.useEffect(() => {
+    addEventListener("onUserLoginFailed", handleUserLoginFailed);
+    return () => removeEventListener("onUserLoginFailed", handleUserLoginFailed)
+  }, []);
+
   function onClose() {
     setState(false);
     dispatchEvent(new CustomEvent("onClosePopups"));
@@ -26,7 +31,13 @@ function InfoTooltip() {
     setState(true);
     setIcon(ErrorIcon);
     setText( "Что-то пошло не так! Попробуйте ещё раз.");
-  }
+  };
+
+  const handleUserLoginFailed = () => {
+    setState(true);
+    setIcon(ErrorIcon);
+    setText( "Что-то пошло не так! Попробуйте ещё раз.");
+  };
   
   const handleUserRegister = () => {
     setState(true);

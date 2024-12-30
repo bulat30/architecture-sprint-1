@@ -41,7 +41,10 @@ function AddPlacePopup() {
         dispatchEvent(new CustomEvent("onCardAdded", {
           detail: response.data
       })))
-      .catch(dispatchEvent(new CustomEvent("onCardAddFailed")));
+      .catch((error) => {
+        console.log(error);
+        dispatchEvent(new CustomEvent("onCardAddFailed"));
+      });
   }
 
   function onClose() {
