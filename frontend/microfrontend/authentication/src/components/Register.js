@@ -2,6 +2,10 @@ import React from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import {register} from '../utils/auth.js';
 
+import '../blocks/auth-form/auth-form.css';
+import '../vendor/normalize.css';
+import '../vendor/fonts.css';
+
 function Register() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
