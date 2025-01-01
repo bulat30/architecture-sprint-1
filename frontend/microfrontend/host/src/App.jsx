@@ -44,7 +44,7 @@ const App = () => {
     return () => removeEventListener("onUserSignOut", handleUserSignOut)
   }, []);
 
-  const handleUserLogin = () => {
+  const handleUserLogin = (event) => {
     setIsLoggedIn(true);
     history.push("/");
   };

@@ -11,12 +11,34 @@ function Places() {
         addEventListener("onUserLogin", handleUserLogin);
         return () => removeEventListener("onUserLogin", handleUserLogin)
     }, []);
+
+    React.useEffect(() => {
+        addEventListener("onUserUpdated", handleUserLogin);
+        return () => removeEventListener("onUserUpdated", handleUserLogin)
+    }, []);
+
+    React.useEffect(() => {
+      addEventListener("onCardAdded", hadnleCardAdd);
+      return () => removeEventListener("onCardAdded", hadnleCardAdd)
+  }, []);
     
     const handleUserLogin = event => {
-        const currentUser = event.detail;
-        const cards = api.getCardList();
-        setCurrentUser(currentUser);
-        setCards(cards);
+      const currentUser = event.detail;
+      api
+        .getCardList()
+        .then(response => {
+          console.log(response.data);
+          console.log(currentUser);
+          setCurrentUser(currentUser);
+          setCards(response.data);
+        });
+    };
+
+    const hadnleCardAdd = (event) => {
+      console.log(cards);
+      cards.push(event.detail);
+      console.log(cards);
+      setCards(cards);
     };
 
     return (
