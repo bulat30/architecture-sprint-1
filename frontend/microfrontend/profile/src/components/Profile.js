@@ -1,5 +1,12 @@
 import '../index.css';
 import React from 'react';
+import api from '../utils/api.js';
+
+api.getUserInfo()
+      .then(response => {
+        const currentUser = response.data;
+        dispatchEvent(new CustomEvent("onUserUpdated", {detail: currentUser}));
+    });
 
 function Profile() {
     const [name, setName] = React.useState('');
@@ -18,9 +25,13 @@ function Profile() {
     
     const handleUserUpdate = event => {
         const currentUser = event.detail;
-        setName(currentUser.name);
-        setAbout(currentUser.about);
-        setAvatar({ backgroundImage: `url(${currentUser.avatar})` });
+        onUserUpdate(currentUser.name, currentUser.about, currentUser.avatar);
+    }
+
+    function onUserUpdate(name, about, avatar){
+        setName(name);
+        setAbout(about);
+        setAvatar({ backgroundImage: `url(${avatar})` });
     }
 
     function onEditAvatar() {

@@ -45,8 +45,8 @@ const App = () => {
   }, []);
 
   const handleUserLogin = () => {
-    history.push("/");
     setIsLoggedIn(true);
+    history.push("/");
   };
 
   const handleUserSignOut = () => {
