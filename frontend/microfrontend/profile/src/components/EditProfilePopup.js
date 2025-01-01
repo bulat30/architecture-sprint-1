@@ -38,9 +38,9 @@ function EditProfilePopup() {
   function onUpdateUser({name, about}) {
     api.setUserInfo({name, about})
       .then(response => 
-        dispatchEvent(new CustomEvent("onUserUpdated"), {
+        dispatchEvent(new CustomEvent("onUserUpdated", {
           detail: response.data
-      }))
+      })))
       .catch((error) => {
         console.log(error);
         dispatchEvent(new CustomEvent("onUserUpdateFailed"));

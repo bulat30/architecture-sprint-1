@@ -7,11 +7,16 @@ function Profile() {
     const [avatar, setAvatar] = React.useState({ backgroundImage: '' });
 
     React.useEffect(() => {
-        addEventListener("onUserLogin", handleUserLogin);
-        return () => removeEventListener("onUserLogin", handleUserLogin)
+        addEventListener("onUserLogin", handleUserUpdate);
+        return () => removeEventListener("onUserLogin", handleUserUpdate)
+    }, []);
+
+    React.useEffect(() => {
+        addEventListener("onUserUpdated", handleUserUpdate);
+        return () => removeEventListener("onUserUpdated", handleUserUpdate)
     }, []);
     
-    const handleUserLogin = event => {
+    const handleUserUpdate = event => {
         const currentUser = event.detail;
         setName(currentUser.name);
         setAbout(currentUser.about);
