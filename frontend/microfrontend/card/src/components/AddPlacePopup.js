@@ -32,6 +32,7 @@ function AddPlacePopup() {
       name,
       link
     });
+    onClose();
   }
 
   function onAddPlace({name, link})

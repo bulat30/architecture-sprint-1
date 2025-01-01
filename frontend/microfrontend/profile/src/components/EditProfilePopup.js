@@ -32,6 +32,7 @@ function EditProfilePopup() {
       name,
       about: description,
     });
+    onClose();
   }
 
   function onUpdateUser({name, about}) {

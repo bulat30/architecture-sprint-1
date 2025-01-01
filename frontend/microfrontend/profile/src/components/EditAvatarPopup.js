@@ -22,6 +22,7 @@ function EditAvatarPopup() {
     onUpdateAvatar({
       avatar: inputRef.current.value,
     });
+    onClose();
   }
 
   function onUpdateAvatar({avatar}) {
