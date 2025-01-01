@@ -24,11 +24,11 @@ function Profile() {
     }
 
     function onEditProfile() {
-        dispatchEvent(new CustomEvent("onProfileEdit"));
+        dispatchEvent(new CustomEvent("onUserUpdate"));
     }
 
     function onAddPlace() {
-        dispatchEvent(new CustomEvent("onPlaceAdd"));
+        dispatchEvent(new CustomEvent("onCardAdd"));
     }
 
     return (

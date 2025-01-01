@@ -55,7 +55,6 @@ const App = () => {
 
   return (
     <div className="page__content">
-      
         <Header/>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
