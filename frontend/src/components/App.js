@@ -91,6 +91,7 @@ function App() {
   }
 
   function handleUpdateUser(userUpdate) {
+    console.log(userUpdate);
     api
       .setUserInfo(userUpdate)
       .then((newUserData) => {

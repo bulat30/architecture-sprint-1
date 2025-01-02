@@ -25,7 +25,7 @@ function EditProfilePopup({ isOpen, onUpdateUser, onClose }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    
     onUpdateUser({
       name,
       about: description,

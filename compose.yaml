@@ -55,8 +55,58 @@ services:
     build:
       context: frontend
       dockerfile: ../Dockerfile.frontend
+    expose:
+      - "3000"
     ports:
       - 3000:3000
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  auth:
+    build:
+      context: frontend/microfrontend/authentication
+      dockerfile: ../../../Dockerfile.frontend
+    expose:
+      - "8081"
+    ports:
+      - 8081:8081
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  places:
+    build:
+      context: frontend/microfrontend/card
+      dockerfile: ../../../Dockerfile.frontend
+    expose:
+      - "8083"
+    ports:
+      - 8083:8083
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  profile:
+    build:
+      context: frontend/microfrontend/profile
+      dockerfile: ../../../Dockerfile.frontend
+    expose:
+      - "8082"
+    ports:
+      - 8082:8082
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  host:
+    build:
+      context: frontend/microfrontend/host
+      dockerfile: ../../../Dockerfile.frontend
+    expose:
+      - "8080"
+    ports:
+      - 8080:8080
     depends_on:
       backend:
         condition: service_healthy
